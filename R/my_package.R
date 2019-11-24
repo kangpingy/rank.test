@@ -1,3 +1,13 @@
+#'my_rank
+#'
+#'Simulate the  function 'rank()' in the 'base' package
+#'
+#'@param x a vector of numbers
+#'
+#'@return A vector with average rank of each element of input x
+#'
+#'@export
+#'
 my_rank <- function(x){
   x_sort <-unique(sort(x))
   len <- length(x_sort)
@@ -13,6 +23,22 @@ my_rank <- function(x){
   return(result)
 }
 
+#'Mann_Whitney_U
+#'
+#'Carry out the rank test
+#'
+#'@param x input vector of the first group. Required
+#'
+#'@param y The second group of variables, optional
+#'
+#'@param median_test with 0 be the defult, compare the values of differences of groups is equal to zero
+#'
+#'@param paired A bollen variable, T means two vector input is a paired sets, the defult is False.
+#'
+#'@return output of a list containg test statistics (V for single group sign test, W for paired group tests) and its p value
+#'
+#'@export
+#'
 Mann_Whitney_U <- function(x,y = NULL, median_test = 0, paired = F){
   median_test <- median_test
   if (is.null(y) || paired == T){
