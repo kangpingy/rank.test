@@ -86,8 +86,8 @@ Mann_Whitney_U <- function(x,y = NULL, median_test = 0, paired = F){
       p2 <- pnorm(z_stat,lower.tail = F)
       p <- 2*min(p1,p2)
     }
-    names(u) <- "W"
-    output <- list(u,p)
+    names(u1) <- "W"
+    output <- list(u1,p)
     return(output)
   }
 }
