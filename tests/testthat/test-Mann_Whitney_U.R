@@ -1,6 +1,6 @@
 test_that("Two small unpaired samples rank test statistics and p value is correct", {
   x <- c(1:5)
-  y <- rnorm(5)*2.5+2.5
+  y <- rnorm(5)*2
   expect_equal(Mann_Whitney_U(x,y)[[1]], wilcox.test(x,y,correct = F)[[1]])  ## Compare Test statistics correctness
   expect_equal(Mann_Whitney_U(x,y)[[2]], wilcox.test(x,y,correct = F)[[3]])  ## Compare p value correctness
   x <- rnorm(10)-2
