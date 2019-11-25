@@ -11,9 +11,8 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>")
-devtools::install_github("kangpingy/rank.test")
 ```
 
 ```{r setup}
-#library(rank.test)
+library(rank.tests)
 ```
