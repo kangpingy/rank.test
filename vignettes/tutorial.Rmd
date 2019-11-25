@@ -16,3 +16,27 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(rank.tests)
 ```
+
+## Discription
+The package "rank.tests" contain two functions, one of which is to mimic rank() function in the base package, which would be useful in the following rank test. 
+Rank test, specifically the Wilcoxon signed-rank test and the Mann–Whitney U test are nonparametric tests of the null hypothesis that samples from the two groups are different from each other or if one group of the sample median is different from a specific number (could be assigned, by default is zero). This test do not need to assume any distribution of the interested groups which would be quite easy to use especially in small sample tests. In large samples, the rank tests statistics is approximately follows normal distribution. 
+
+## My_rank(x) example
+```{r}
+x <- c(4,2,6,4,9,1,4,6)
+my_rank(x)
+rank(x)
+```
+
+As we could see from above, my_rank function perfectly mimic rank function in base package. For numbers are the same, the rank of these numbers are all the same at their average rank.
+
+## Mann_Whitney_U(x,y=NULL,median_test = 0, paired = F)
+
+Another one is "Mann_Whitney_U". It can carry out both Wilcoxon signed-rank test (for one numeric vector or two comparing numeric vectors) and Mann–Whitney U test  (for two different unpaired  samples).
+```{r}
+  x <- c(1:5)
+  y <- rnorm(5)*2.5+2.5
+  Mann_Whitney_U(x,y)
+  wilcox.test(x,y,correct = F)  ##R function carry out the test in 'stats' package
+```
+
