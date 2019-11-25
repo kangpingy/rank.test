@@ -33,6 +33,8 @@ As we could see from above, my_rank function perfectly mimic rank function in ba
 ## Mann_Whitney_U(x,y=NULL,median_test = 0, paired = F)
 
 Another one is "Mann_Whitney_U". It can carry out both Wilcoxon signed-rank test (for one numeric vector or two comparing numeric vectors) and Mann–Whitney U test  (for two different unpaired  samples).
+
+Here is one example of Mann-Whitney U test with small samples
 ```{r}
   x <- c(1:5)
   y <- rnorm(5)*2.5+2.5
@@ -40,3 +42,19 @@ Another one is "Mann_Whitney_U". It can carry out both Wilcoxon signed-rank test
   wilcox.test(x,y,correct = F)  ##R function carry out the test in 'stats' package
 ```
 
+Another example is Wilcoxon signed rank test for one sample to test if the sample median (not the mean) is significantly different from zero:
+```{r}
+  x <- rnorm(200)+0.01
+  Mann_Whitney_U(x)
+  wilcox.test(x,correct = F)
+```
+
+It could also test whether there is a difference between two paired samples (i.e. A group of patients' blood pressure before and after treatment) by using 'paried = T' argument(Note the sample size of X and Y should be equal in this case):
+```{r}
+  x <- rchisq(108,2)
+  y <- rchisq(108,2)+0.001
+  Mann_Whitney_U(x,y,paired = T)
+  wilcox.test(x,y,correct = F,paired = T)
+```
+
+You can also change the c 
