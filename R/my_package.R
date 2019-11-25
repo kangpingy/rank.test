@@ -123,8 +123,3 @@ Mann_Whitney_U <- function(x,y = NULL, median_test = 0, paired = F){
     return(output)
   }
 }
-
-Kruskal_Wallis <- function(x,group){
-  x <- 1
-  group <-3
-}
