@@ -58,7 +58,7 @@ Mann_Whitney_U <- function(x,y = NULL, median_test = 0, paired = F){
     unique_rank <- length(unique(rank_x)) == length(rank_x)
     if (origin_len_x == len_x && len_x < 50 && unique_rank){
       if (w_oneside > len_x*(len_x+1)/4){
-        p <- psignrank(w_oneside - 1, len_x, lower.tail = F)
+        p <- psignrank(w_oneside - 1, len_x, lower.tail = F)  ##The special distribution of rank statistics W at a low degree of freedom under null hypothesis
       }else{
         p <- psignrank(w_oneside, len_x)
       }
@@ -73,9 +73,9 @@ Mann_Whitney_U <- function(x,y = NULL, median_test = 0, paired = F){
       z <- w_oneside - len_x*(len_x+1)/4
       w_oneside_sigma <- sqrt(len_x*(len_x+1)*(2*len_x+1)/24 - sum_correction/48)
       z <- z / w_oneside_sigma
-      p <- 2*min(pnorm(z),pnorm(z,lower.tail = F))
+      p <- 2*min(pnorm(z),pnorm(z,lower.tail = F))     ## When sample size is large, under null hypothesis, W approximately follows a nomal distribution with mean and sigma given above.
       if (!unique_rank && len_x < 50){
-        warning("cannot compute exact p-value with ties")
+        warning("cannot compute exact p-value with ties")  ## However, when ties of rank is in the sample, the sigma would be unaccrrate and p-value is not exact.
       }
     }
     names(w_oneside) <- "V"
@@ -95,7 +95,7 @@ Mann_Whitney_U <- function(x,y = NULL, median_test = 0, paired = F){
     unique_number <- length(unique(whole_set)) == len_whole
     if (len_x <50 && len_y<50 && unique_number){
       if (u1 < len_x*len_y/2){
-        p <- pwilcox(u1,len_x,len_y)
+        p <- pwilcox(u1,len_x,len_y)  ##for small samples U statistics follows wilcox distribution.
       }else{
         p <- pwilcox(u1-1,len_x,len_y,lower.tail = F)
       }
