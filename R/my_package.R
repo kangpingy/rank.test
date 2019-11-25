@@ -74,7 +74,7 @@ Mann_Whitney_U <- function(x,y = NULL, median_test = 0, paired = F){
       w_oneside_sigma <- sqrt(len_x*(len_x+1)*(2*len_x+1)/24 - sum_correction/48)
       z <- z / w_oneside_sigma
       p <- 2*min(pnorm(z),pnorm(z,lower.tail = F))
-      if (origin_len_x != len_x && len_x < 50){
+      if (!unique_rank && len_x < 50){
         warning("cannot compute exact p-value with ties")
       }
     }

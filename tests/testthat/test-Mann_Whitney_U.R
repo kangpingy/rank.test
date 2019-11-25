@@ -18,12 +18,20 @@ test_that("One small unpaired sample rank test statistics and p value is correct
   expect_equal(Mann_Whitney_U(x)[[2]], wilcox.test(x,correct = F)[[3]])
 })
 
-test_that("One small unpaired samples rank test statistics and p value is correct", {
+test_that("Two small unpaired samples rank test statistics and p value is correct", {
   x <- c(rnorm(20)+0.5,2,2,2)
   y <- c(rnorm(12),1,1,1)
   expect_equal(Mann_Whitney_U(x,y)[[1]], wilcox.test(x,y,correct = F)[[1]])
   expect_warning(Mann_Whitney_U(x,y))
   expect_warning(wilcox.test(x,y,correct = F))
+  ##expect_equal(Mann_Whitney_U(x)[[2]], wilcox.test(x,correct = F)[[3]]) Ti
+})
+
+test_that("Two small unpaired samples rank test statistics and p value is correct", {
+  x <- c(rnorm(30)+1,2,2,2)
+  expect_equal(Mann_Whitney_U(x)[[1]], wilcox.test(x,correct = F)[[1]])
+  expect_warning(Mann_Whitney_U(x))
+  expect_warning(wilcox.test(x,correct = F))
   ##expect_equal(Mann_Whitney_U(x)[[2]], wilcox.test(x,correct = F)[[3]]) Ti
 })
 
