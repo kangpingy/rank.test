@@ -10,10 +10,14 @@ test_that("Two small unpaired samples rank test statistics and p value is correc
 })
 
 test_that("Two large unpaired samples rank test statistics and p value is correct", {
-  x <- runif(54)
+  x <- runif(60)
   y <- rnorm(54)*2.5
   expect_equal(Mann_Whitney_U(x,y)[[1]], wilcox.test(x,y,correct = F)[[1]])
   expect_equal(Mann_Whitney_U(x,y)[[2]], wilcox.test(x,y,correct = F)[[3]])
+  x <- runif(54)
+  y <- rnorm(54)*2.5
+  expect_equal(Mann_Whitney_U(x,y,median_test = 1, paired = T)[[1]], wilcox.test(x,y,mu = 1, paired = T, correct = F)[[1]])
+  expect_equal(Mann_Whitney_U(x,y,median_test = 1, paired = T)[[2]], wilcox.test(x,y,mu = 1, paired = T, correct = F)[[3]])
 })
 
 test_that("One small unpaired sample rank test statistics and p value is correct", {
