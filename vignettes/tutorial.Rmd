@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(rank.tests)
 library(bench)
+library(graphics)
 ```
 
 ## Discription
@@ -77,7 +78,8 @@ We may compare the running speed between my function and that one already have:
   x <- rchisq(100,3)
   y <- rchisq(100,2)+0.01
   mark(Mann_Whitney_U(x,y)[[2]], wilcox.test(x,y,correct = F)[[3]])
-  ##plot(bench::mark(Mann_Whitney_U(x,y)[[2]], wilcox.test(x,y,correct = F)[[3]])) ## Compare both correctness and speed when cacluting test statistics p value. 
+  a <- mark(Mann_Whitney_U(x,y)[[2]], wilcox.test(x,y,correct = F)[[3]])
+  plot(a) ## Compare both correctness and speed when cacluting test statistics p value. 
   ## The above two R code could line only run in R studio, is having trouble in building packages in travis. So I preserve the code with '##'  
 ```
 As we could see from the brench::mark() result, my function implemented in my package is about twice as fast as the wilcox.test in stats package when total sample size is at hunderds level. 
