@@ -1,10 +1,14 @@
 #'my_rank
 #'
-#'Simulate the  function 'rank()' in the 'base' package
+#'Simulate the  function 'rank()' in the 'base' package to give the rank of each element in the vector
 #'
-#'@param x a vector of numbers
+#'@param x A numeric vector
 #'
 #'@return A vector with average rank of each element of input x
+#'
+#'@examples
+#'my_rank(rnorm(100))
+#'my_rank(c(4,3,3,8,-1,4,7,5,4,4,3,0))   ## Note that if there are ties in elements, the average rank of ties would return correspondingly to the tied elements.
 #'
 #'@export
 #'
@@ -25,17 +29,35 @@ my_rank <- function(x){
 
 #'Mann_Whitney_U
 #'
-#'Carry out the rank test
+#'Carry out the rank test.By default, y = NULL and carring out wilcox signed rank test on whether x sample (first arguement) median is equal to zero.
+#'If y is given a vector , then Mann Whitney U rank test is carried out to test if there is significant average rank difference between x and y.
+#'The return value contains the test statistics and p value. For small samples (x and y sample size smaller than 50) the W distribution is carried out in accordance with wilcox.test() in stats package to obtain the same result. For sample size greater than 50, an approximation of normal distribution is used to calculate p value.
+#'If sample rank has ties, the p value could not be calculated exactly and a approximation is used. A warning message will be prompted and the comparing function wilcox.test() will do the same.
 #'
-#'@param x input vector of the first group. Required
+#'@param x The first group of rank-test samples. Required
 #'
-#'@param y The second group of variables, optional
+#'@param y The second group of samples, optional. By default, y = NULL.
 #'
-#'@param median_test with 0 be the defult, compare the values of differences of groups is equal to zero
+#'@param median_test Compare the values of differences of x and y groups is equal to the given argument.(The default is 0)
 #'
-#'@param paired A bollen variable, T means two vector input is a paired sets, the defult is False.
+#'@param paired To indicate if X,Y are samples from a paired study, T means two vector input is a paired sets(i.e. The same group of patients' blood pressure before and after treatment), the defult is False.
 #'
-#'@return output of a list containg test statistics (V for single group sign test, W for paired group tests) and its p value
+#'@return output of a list containg test statistics (V for single group sign test, W for paired group tests) and its p value. p<0.05 would indicate rejection of (x - median_test) is centered at 0 (for one sample test)or (x - median_test) and y having similar distribution(for two samples rank test).
+#'
+#'@examples
+#'x <- rnorm(100) + 0.1
+#'y <- rnorm(100)
+#'Mann_Whitney_U(x)
+#'Mann_Whitney_U(x,median_test = 0.1)
+#'Mann_Whitney_U(x,y,median_test = 0.1, paired = T)
+#'Mann_Whitney_U(x,y,median_test = 0.1)
+#'Mann_Whitney_U(x,y)
+#'Mann_Whitney_U(x,y, paired = T)
+#'
+#'x <- rnorm(150) + 0.1
+#'y <- rnorm(80)
+#'Mann_Whitney_U(x,y,median_test = 0.1)  ## for length(x) != length(y) 'paired' arguement could only be False. We could still test if x and y median's difference is 0.1.
+#'Mann_Whitney_U(x,y)
 #'
 #'@export
 #'

@@ -7,17 +7,36 @@
 Mann_Whitney_U(x, y = NULL, median_test = 0, paired = F)
 }
 \arguments{
-\item{x}{input vector of the first group. Required}
+\item{x}{The first group of rank-test samples. Required}
 
-\item{y}{The second group of variables, optional}
+\item{y}{The second group of samples, optional. By default, y = NULL.}
 
-\item{median_test}{with 0 be the defult, compare the values of differences of groups is equal to zero}
+\item{median_test}{Compare the values of differences of x and y groups is equal to the given argument.(The default is 0)}
 
-\item{paired}{A bollen variable, T means two vector input is a paired sets, the defult is False.}
+\item{paired}{To indicate if X,Y are samples from a paired study, T means two vector input is a paired sets(i.e. The same group of patients' blood pressure before and after treatment), the defult is False.}
 }
 \value{
-output of a list containg test statistics (V for single group sign test, W for paired group tests) and its p value
+output of a list containg test statistics (V for single group sign test, W for paired group tests) and its p value. p<0.05 would indicate rejection of (x - median_test) is centered at 0 (for one sample test)or (x - median_test) and y having similar distribution(for two samples rank test).
 }
 \description{
-Carry out the rank test
+Carry out the rank test.By default, y = NULL and carring out wilcox signed rank test on whether x sample (first arguement) median is equal to zero.
+If y is given a vector , then Mann Whitney U rank test is carried out to test if there is significant average rank difference between x and y.
+The return value contains the test statistics and p value. For small samples (x and y sample size smaller than 50) the W distribution is carried out in accordance with wilcox.test() in stats package to obtain the same result. For sample size greater than 50, an approximation of normal distribution is used to calculate p value.
+If sample rank has ties, the p value could not be calculated exactly and a approximation is used. A warning message will be prompted and the comparing function wilcox.test() will do the same.
+}
+\examples{
+x <- rnorm(100) + 0.1
+y <- rnorm(100)
+Mann_Whitney_U(x)
+Mann_Whitney_U(x,median_test = 0.1)
+Mann_Whitney_U(x,y,median_test = 0.1, paired = T)
+Mann_Whitney_U(x,y,median_test = 0.1)
+Mann_Whitney_U(x,y)
+Mann_Whitney_U(x,y, paired = T)
+
+x <- rnorm(150) + 0.1
+y <- rnorm(80)
+Mann_Whitney_U(x,y,median_test = 0.1)  ## for length(x) != length(y) 'paired' arguement could only be False. We could still test if x and y median's difference is 0.1.
+Mann_Whitney_U(x,y)
+
 }
