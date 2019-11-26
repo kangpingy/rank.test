@@ -49,10 +49,10 @@ my_rank <- function(x){
 #'y <- rnorm(100)
 #'Mann_Whitney_U(x)
 #'Mann_Whitney_U(x,median_test = 0.1)
-#'Mann_Whitney_U(x,y,median_test = 0.1, paired = T)
+#'Mann_Whitney_U(x,y,median_test = 0.1, paired = TRUE)
 #'Mann_Whitney_U(x,y,median_test = 0.1)
 #'Mann_Whitney_U(x,y)
-#'Mann_Whitney_U(x,y, paired = T)
+#'Mann_Whitney_U(x,y, paired = TRUE)
 #'
 #'x <- rnorm(150) + 0.1
 #'y <- rnorm(80)
