@@ -49,7 +49,7 @@ Another example is Wilcoxon signed rank test for one sample to test if the sampl
   wilcox.test(x,correct = F)
 ```
 
-It could also test whether there is a difference between two paired samples (i.e. A group of patients' blood pressure before and after treatment) by using 'paried = T' argument(Note the sample size of X and Y should be equal in this case):
+It could also test whether there is a difference between two paired samples (i.e. A group of patients' blood pressure before and after treatment) by using 'paried = T' argument(Note: the sample size of X and Y should be equal in this case):
 ```{r}
   x <- rchisq(108,2)
   y <- rchisq(108,2)+0.001
@@ -57,4 +57,24 @@ It could also test whether there is a difference between two paired samples (i.e
   wilcox.test(x,y,correct = F,paired = T)
 ```
 
-You can also change the c 
+You can also change the compared median to number other than 0, for both wilcox signed rank test and paired two sample rank test using 'median_test =' argument: (By default, median_test = 0 if not specified)
+```{r}
+  x <- rchisq(108,2)
+  y <- rchisq(108,2)+0.01
+  Mann_Whitney_U(x,median_test = 0.01)
+  wilcox.test(x,correct = F, mu = 0.01)
+  Mann_Whitney_U(x,y,paired = T,median_test = 0.01)
+  wilcox.test(x,y,correct = F,paired = T, mu = 0.01)
+```
+
+The result is obvious that x sample median is not 0.01, and x and y sample's difference in median would approximately be 0.01 (p>0.05 in the second result which have the same report value as the wilcox.test() in stat package). 
+
+## Efficientcy when compared with wilcox.test() in stats package
+
+We may compare the running speed between my function and that one already have:
+```{r}
+  x <- rchisq(100,3)
+  y <- rchisq(100,2)+0.01
+  plot(mark(Mann_Whitney_U(x,y)[[2]], wilcox.test(x,y,correct = F)[[3]])) ## Compare both correctness and speed when cacluting test statistics p value
+```
+As we could see from the brench::mark() result, my function implemented in my package is about twice as fast as the wilcox.test in stats package when total sample size is at hunderds level. 
