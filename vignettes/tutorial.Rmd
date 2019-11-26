@@ -76,7 +76,7 @@ We may compare the running speed between my function and that one already have:
 ```{r}
   x <- rchisq(100,3)
   y <- rchisq(100,2)+0.01
-  ##bench::mark(Mann_Whitney_U(x,y)[[2]], wilcox.test(x,y,correct = F)[[3]])
+  mark(Mann_Whitney_U(x,y)[[2]], wilcox.test(x,y,correct = F)[[3]])
   ##plot(bench::mark(Mann_Whitney_U(x,y)[[2]], wilcox.test(x,y,correct = F)[[3]])) ## Compare both correctness and speed when cacluting test statistics p value. 
   ## The above two R code could line only run in R studio, is having trouble in building packages in travis. So I preserve the code with '##'  
 ```
