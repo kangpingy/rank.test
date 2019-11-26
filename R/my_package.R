@@ -8,7 +8,7 @@
 #'
 #'@examples
 #'my_rank(rnorm(100))
-#'my_rank(c(4,3,3,8,-1,4,7,5,4,4,3,0))   ## Note that if there are ties in elements, the average rank of ties would return correspondingly to the tied elements.
+#'my_rank(c(4,3,3,8,-1,4,7,5,4,4,3,0))   ## The average rank of ties would return correspondingly to the tied elements.
 #'
 #'@export
 #'
@@ -56,7 +56,7 @@ my_rank <- function(x){
 #'
 #'x <- rnorm(150) + 0.1
 #'y <- rnorm(80)
-#'Mann_Whitney_U(x,y,median_test = 0.1)  ## for length(x) != length(y) 'paired' arguement could only be False. We could still test if x and y median's difference is 0.1.
+#'Mann_Whitney_U(x,y,median_test = 0.1)  ## for length(x) != length(y) 'paired' arguement could only be False.
 #'Mann_Whitney_U(x,y)
 #'
 #'@export
