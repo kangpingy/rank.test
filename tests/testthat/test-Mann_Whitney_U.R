@@ -54,8 +54,3 @@ test_that("One small unpaired samples rank test statistics and p value is correc
   expect_equal(Mann_Whitney_U(x)[[1]], wilcox.test(x,correct = F)[[1]])
   expect_equal(Mann_Whitney_U(x)[[2]], wilcox.test(x,correct = F)[[3]])
 })
-
-test_that("my_rank is equivalent to rank in base", {
-  x <- rnorm(1000)
-  expect_equal(my_rank(x), rank(x))
-})
