@@ -5,10 +5,13 @@
 
   There are two functions in the package one is my_rank which simulate rank() function in the base package, which is critical to return correctly with tied rank result in the following main rank test function.The 'Mann_Whitney_U' function is the main rank test function in the package, which could carry out two similar rank test through different input arguement.
   
-## Install the package  (This part is added for graders' convenience for successful installation of this package)
-library(devtools)/n
-devtools::install_github("kangpiny/rank.test", build_vignettes = F , Force = T)/n
-library(rank.tests)/n
+## Install the package  
+(This part is added for graders' convenience for successful installation of this package directly from GitHub)
+``` {R}
+library(devtools)
+devtools::install_github("kangpiny/rank.test", build_vignettes = F , Force = T)
+library(rank.tests)
+```
 # Edited on Dec 1st.
 
 ## Wilcoxon signed-rank test
