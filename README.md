@@ -9,10 +9,10 @@
 (This part is added for graders' convenience for successful installation of this package directly from GitHub)
 ``` {R}
 library(devtools)
-devtools::install_github("kangpiny/rank.test", build_vignettes = F , Force = T)
+devtools::install_github("kangpingy/rank.test", build_vignettes = F , Force = T)
 library(rank.tests)
 ```
-# Edited on Dec 1st.
+## Edited on Dec 1st.
 
 ## Wilcoxon signed-rank test
   One of the rank test is the Wilcoxon signed-rank test. It is a non-parametric statistical hypothesis test used to compare two related samples, matched samples, or repeated measurements on a single sample to assess whether their population mean ranks differ (i.e. it is a paired difference test). It can be use as an alternative to the paired Student's t-test (also known as "t-test for matched pairs" or "t-test for dependent samples") when the distribution of the differences between the two samples cannot be assumed to be normally distributed. A Wilcoxon signed-rank test is a nonparametric test that can be used to determine whether two dependent samples were selected from populations having the same distribution.
