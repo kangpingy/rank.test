@@ -9,7 +9,7 @@
 (This part is added for graders' convenience for successful installation of this package directly from GitHub)
 ``` {R}
 library(devtools)
-devtools::install_github("kangpingy/rank.test", build_vignettes = F , Force = T)
+devtools::install_github("kangpingy/rank.test", build_vignettes = T , force = T)
 library(rank.tests)
 ```
 ## Edited on Dec 1st.
